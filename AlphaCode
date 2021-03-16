@@ -1,0 +1,198 @@
+const int buzzer = 8;
+
+const int button1 = 2; //assigning buttons to variables           
+const int button2 = 3;          
+const int button3 = 4;          
+const int button4 = 5;        
+  
+const int led1 = 13; // assigning pins to variables            
+const int led2 = 12;             
+const int led3 = 11;             
+const int led4 = 10; 
+
+int randNum1 = 0; //variables for random number selection
+int randNum2 = 0;
+int randNum3 = 0;
+int randNum4 = 0;
+int randNum5 = 0;
+int randNum6 = 0;
+int randNum7 = 0;
+int randNum8 = 0;
+
+int input1 = 0; //variables for user input
+int input2 = 0;
+int input3 = 0;
+int input4 = 0;
+int input5 = 0;
+int input6 = 0;
+int input7 = 0;
+int input8 = 0;
+
+       
+void setup() 
+{ 
+  pinMode(button1, INPUT); //assigning variable to button input
+  pinMode(button2, INPUT); //assigning variable to button input
+  pinMode(button3, INPUT); //assigning variable to button input
+  pinMode(button4, INPUT); //assigning variable to button input
+ 
+  pinMode(led1, OUTPUT); //assigning variable to LED output
+  pinMode(led2, OUTPUT); //assigning variable to LED output
+  pinMode(led3, OUTPUT); //assigning variable to LED output
+  pinMode(led4, OUTPUT); //assigning variable to LED output
+  
+  pinMode(buzzer, OUTPUT); //assigning variable to buzzer output
+
+}
+
+
+void loop()
+{
+  int button1Val = digitalRead(button1);
+  int button2Val = digitalRead(button2);
+  int button3Val = digitalRead(button3);
+  int button4Val = digitalRead(button4);
+  
+  
+  for (int difficultyLevel = 1; difficultyLevel <= 5; difficultyLevel++) //Loop for level progression
+  {
+    if (difficultyLevel == 1) //check for level 1
+    {
+      randNum1 = random(1,4);
+      randNum2 = random(1,4); //assigning random light values
+      randNum3 = random(1,4);
+      
+      if (randNum1 == 1) //displaying first random value on LED
+      {
+        digitalWrite(led1,HIGH);
+        delay(1000);
+        digitalWrite(led1,LOW);
+      }
+      else if (randNum1 == 2)
+      {
+        digitalWrite(led2,HIGH);
+        delay(1000);
+        digitalWrite(led2,LOW);
+      }
+      else if (randNum1 == 3)
+      {
+        digitalWrite(led3,HIGH);
+        delay(1000);
+        digitalWrite(led3,LOW);
+      }
+      else
+      {
+        digitalWrite(led4,HIGH);
+        delay(1000);
+        digitalWrite(led4,LOW);
+      }
+      delay(1000);
+      
+      if (randNum2 == 1) //displaying second random value on LED
+      {
+        digitalWrite(led1,HIGH);
+        delay(1000);
+        digitalWrite(led1,LOW);
+      }
+      else if (randNum2 == 2)
+      {
+        digitalWrite(led2,HIGH);
+        delay(1000);
+        digitalWrite(led2,LOW);
+      }
+      else if (randNum2 == 3)
+      {
+        digitalWrite(led3,HIGH);
+        delay(1000);
+        digitalWrite(led3,LOW);
+      }
+      else
+      {
+        digitalWrite(led4,HIGH);
+        delay(1000);
+        digitalWrite(led4,LOW);
+      }
+      delay(1000);
+      
+      if (randNum3 == 1) //displaying third random value on LED
+      {
+        digitalWrite(led1,HIGH);
+        delay(1000);
+        digitalWrite(led1,LOW);
+      }
+      else if (randNum3 == 2)
+      {
+        digitalWrite(led2,HIGH);
+        delay(1000);
+        digitalWrite(led2,LOW);
+      }
+      else if (randNum3 == 3)
+      {
+        digitalWrite(led3,HIGH);
+        delay(1000);
+        digitalWrite(led3,LOW);
+      }
+      else
+      {
+        digitalWrite(led4,HIGH);
+        delay(1000);
+        digitalWrite(led4,LOW);
+      }
+      delay(1000);
+      
+      while (button1Val == LOW && button2Val == LOW && button3Val == LOW && button4Val == LOW)
+      {
+       Serial.print("waiting for input"); //Looping until user presses button
+       delay(500);
+      }
+      if (button1Val == HIGH)
+      {
+        digitalWrite(led1,HIGH);
+        input1 = 1;
+      }
+      else
+      {
+        digitalWrite(led1,LOW);
+      }
+      if (button2Val == HIGH)
+      {
+        digitalWrite(led2,HIGH);
+        input1 = 2;
+      }
+      else
+      {
+        digitalWrite(led2,LOW);
+      }
+      if (button3Val == HIGH)
+      {
+        digitalWrite(led3,HIGH);
+        input1 = 3;
+      }
+      else
+      {
+        digitalWrite(led3,LOW);
+      }
+      if (button4Val == HIGH)
+      {
+        digitalWrite(led4,HIGH);
+        input1 = 4;
+      }
+      else
+      {
+        digitalWrite(led4,LOW);
+      }
+      
+
+      if (input1 == randNum1) //checking if first user input matches random value
+      {
+        Serial.print("correct");
+      }
+      else
+      {
+        tone(buzzer, 1000);
+        delay(500);
+        noTone(buzzer);
+      }
+          
+    }
+  }
